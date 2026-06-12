@@ -1,0 +1,26 @@
+# Node modules
+node_modules/
+
+# Expo
+.expo/
+.expo-shared/
+
+# Firebase
+firebase-debug.log
+
+# Build files
+dist/
+web-build/
+
+# Environment files
+.env
+.env.*
+
+# Android
+android/
+
+# iOS
+ios/
+
+# Misc
+.DS_Store
