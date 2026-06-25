@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 
 import InputField from "@/components/ui/InputField";
@@ -23,10 +18,10 @@ export default function LoginScreen() {
     <View style={styles.container}>
       <Text style={styles.logo}>🚌</Text>
 
-      <Text style={styles.title}>Welcome Back</Text>
+      <Text style={styles.title}>VAHANAS</Text>
 
       <Text style={styles.subtitle}>
-        Login to continue using VAHANAS
+        Login to continue
       </Text>
 
       <InputField
@@ -42,16 +37,11 @@ export default function LoginScreen() {
         onChangeText={setPassword}
       />
 
-      <PrimaryButton
-        title="Login"
-        onPress={handleLogin}
-      />
+      <PrimaryButton title="Login" onPress={handleLogin} />
 
-      <TouchableOpacity
-        onPress={() => router.push("/auth/register")}
-      >
+      <TouchableOpacity onPress={() => router.push("/auth/register")}>
         <Text style={styles.registerText}>
-          Don't have an account? Register
+          Don’t have an account? Register
         </Text>
       </TouchableOpacity>
     </View>
@@ -73,7 +63,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 30,
+    fontSize: 34,
     fontWeight: "bold",
     textAlign: "center",
     color: Colors.primary,
@@ -84,6 +74,7 @@ const styles = StyleSheet.create({
     color: Colors.gray,
     marginTop: 10,
     marginBottom: 40,
+    fontSize: 16,
   },
 
   registerText: {

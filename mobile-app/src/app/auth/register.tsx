@@ -3,6 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
+  TouchableOpacity,
+  ScrollView,
 } from "react-native";
 
 import InputField from "@/components/ui/InputField";
@@ -13,13 +15,17 @@ export default function RegisterScreen() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [role, setRole] = useState("Passenger");
 
   const handleRegister = () => {
     console.log("Register clicked");
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.logo}>🚌</Text>
+
       <Text style={styles.title}>Create Account</Text>
 
       <InputField
@@ -41,20 +47,54 @@ export default function RegisterScreen() {
         onChangeText={setPassword}
       />
 
-      <PrimaryButton
-        title="Register"
-        onPress={handleRegister}
+      <InputField
+        placeholder="Confirm Password"
+        secureTextEntry
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
       />
-    </View>
+
+      <Text style={styles.roleLabel}>Select Role</Text>
+
+      <View style={styles.roleContainer}>
+        <TouchableOpacity
+          style={[
+            styles.roleButton,
+            role === "Passenger" && styles.activeRole,
+          ]}
+          onPress={() => setRole("Passenger")}
+        >
+          <Text style={styles.roleText}>Passenger</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            styles.roleButton,
+            role === "Driver" && styles.activeRole,
+          ]}
+          onPress={() => setRole("Driver")}
+        >
+          <Text style={styles.roleText}>Driver</Text>
+        </TouchableOpacity>
+      </View>
+
+      <PrimaryButton title="Register" onPress={handleRegister} />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: Colors.background,
     justifyContent: "center",
     padding: 24,
+  },
+
+  logo: {
+    fontSize: 50,
+    textAlign: "center",
+    marginBottom: 10,
   },
 
   title: {
@@ -63,5 +103,35 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: Colors.primary,
     marginBottom: 30,
+  },
+
+  roleLabel: {
+    fontSize: 16,
+    fontWeight: "600",
+    marginBottom: 10,
+  },
+
+  roleContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 25,
+  },
+
+  roleButton: {
+    flex: 1,
+    padding: 14,
+    backgroundColor: "#E5E7EB",
+    borderRadius: 12,
+    alignItems: "center",
+    marginHorizontal: 5,
+  },
+
+  activeRole: {
+    backgroundColor: Colors.primary,
+  },
+
+  roleText: {
+    color: "#111827",
+    fontWeight: "600",
   },
 });

@@ -3,11 +3,19 @@ import { TouchableOpacity, Text, StyleSheet } from "react-native";
 type Props = {
   title: string;
   onPress: () => void;
+  color?: string;
 };
 
-export default function PrimaryButton({ title, onPress }: Props) {
+export default function PrimaryButton({
+  title,
+  onPress,
+  color = "#2563EB",
+}: Props) {
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.button, { backgroundColor: color }]}
+      onPress={onPress}
+    >
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
@@ -15,12 +23,12 @@ export default function PrimaryButton({ title, onPress }: Props) {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#2563EB",
     paddingVertical: 15,
     borderRadius: 12,
     alignItems: "center",
     width: "100%",
     elevation: 3,
+    marginBottom: 12,
   },
   text: {
     color: "#fff",
