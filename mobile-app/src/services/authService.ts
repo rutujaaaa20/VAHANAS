@@ -1,3 +1,7 @@
+import { serverTimestamp } from "firebase/firestore";
+import { signOut } from "firebase/auth";
+
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -32,7 +36,7 @@ export const registerUser = async (
     email,
     role,
     approved: role === "driver" ? false : true,
-    createdAt: new Date(),
+    createdAt: serverTimestamp(),
   });
 
   return userCredential.user;
@@ -58,4 +62,8 @@ export const getUserData = async (uid: string) => {
   const snapshot = await getDoc(docRef);
 
   return snapshot.data();
+};
+
+export const logoutUser = async () => {
+  await signOut(auth);
 };
