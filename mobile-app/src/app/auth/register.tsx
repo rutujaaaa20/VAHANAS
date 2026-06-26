@@ -20,6 +20,7 @@ export default function RegisterScreen() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("passenger");
+  const [role, setRole] = useState("Passenger");
 
   const handleRegister = async () => {
     if (!name || !email || !password || !confirmPassword) {
@@ -143,6 +144,33 @@ export default function RegisterScreen() {
           Already have an account? Login
         </Text>
       </TouchableOpacity>
+      />
+
+      <Text style={styles.roleLabel}>Select Role</Text>
+
+      <View style={styles.roleContainer}>
+        <TouchableOpacity
+          style={[
+            styles.roleButton,
+            role === "Passenger" && styles.activeRole,
+          ]}
+          onPress={() => setRole("Passenger")}
+        >
+          <Text style={styles.roleText}>Passenger</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            styles.roleButton,
+            role === "Driver" && styles.activeRole,
+          ]}
+          onPress={() => setRole("Driver")}
+        >
+          <Text style={styles.roleText}>Driver</Text>
+        </TouchableOpacity>
+      </View>
+
+      <PrimaryButton title="Register" onPress={handleRegister} />
     </ScrollView>
   );
 }
@@ -157,6 +185,7 @@ const styles = StyleSheet.create({
 
   logo: {
     fontSize: 55,
+    fontSize: 50,
     textAlign: "center",
     marginBottom: 10,
   },
@@ -185,6 +214,7 @@ const styles = StyleSheet.create({
   roleButton: {
     flex: 1,
     padding: 15,
+    padding: 14,
     backgroundColor: "#E5E7EB",
     borderRadius: 12,
     alignItems: "center",
@@ -192,6 +222,7 @@ const styles = StyleSheet.create({
   },
 
   selectedRole: {
+  activeRole: {
     backgroundColor: Colors.primary,
   },
 
